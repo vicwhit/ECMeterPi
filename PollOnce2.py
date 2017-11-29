@@ -5,7 +5,17 @@ import fcntl      # used to access I2C parameters like addresses
 
 import time       # used for sleep delay and timestamps
 import string     # helps parse strings
+import MySQLdb
+import datetime
 
+#import pymysql as mysql
+#base = MySql.connect(
+#        user = 'root',
+#        password = 'fluid',
+#        host = 'localhost',
+#        db = 'fluidlab')
+
+#cursor = base.cursor()
 
 class AtlasI2C:
         long_timeout = 1.5         	# the timeout needed to query readings and calibrations
@@ -98,20 +108,15 @@ def main():
                 for addr in List:
                         device.set_i2c_address(addr)
                         print(device.query("R"))
+			#try: 
+				#sql = 'INSERT INTO raspberry (time, port, value) VALUES (%s, %s, %s,)'
+				#cursor.execute(squl, (datetime.now(),addr,device.query("R")))
+				#base.commit
+			#except:
+				#pass
                 i = i+1
 		
 
 
 if __name__ == '__main__':
         main()
-
-#import pymysql as mysql
-#base = mysql.connect(
-#        user = 'something',
-#        password = 'something',
-#        host = '127.0.0.1',
-#        port = 3306,
-#        db = 'something')
-#sql = 'INSERT INTO "something"(different categories) VALUES (%s)' %device.query("R")
-#cursor.execute (sql)
-#db.commit
