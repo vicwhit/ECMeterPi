@@ -107,7 +107,9 @@ def main():
 	while (i < 3):
                 for addr in List:
                         device.set_i2c_address(addr)
-                        print(device.query("R"))
+			timestamp = time.time()
+			print '%f' % timestamp,
+			print(device.query("R"))
 			#try: 
 				#sql = 'INSERT INTO raspberry (time, port, value) VALUES (%s, %s, %s,)'
 				#cursor.execute(squl, (datetime.now(),addr,device.query("R")))
