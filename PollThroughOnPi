@@ -6,6 +6,7 @@ import fcntl      # used to access I2C parameters like addresses
 import time       # used for sleep delay and timestamps
 import string     # helps parse strings
 
+import datetime
 
 #import pymysql as mysql
 #base = MySql.connect(
@@ -106,7 +107,7 @@ def main():
 	while (i < 3):
                 for addr in List:
                         device.set_i2c_address(addr)
-			timestamp = time.time()
+			timestamp = datetime.datetime.now()
 			print '%f' % timestamp,
 			print(device.query("R"))
 			#try: 
