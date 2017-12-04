@@ -5,8 +5,7 @@ import fcntl      # used to access I2C parameters like addresses
 
 import time       # used for sleep delay and timestamps
 import string     # helps parse strings
-import MySQLdb
-import datetime
+
 
 #import pymysql as mysql
 #base = MySql.connect(
