@@ -8,13 +8,6 @@ import string     # helps parse strings
 
 import datetime
 
-#import pymysql as mysql
-#base = MySql.connect(
-#        user = 'root',
-#        password = 'fluid',
-#        host = 'localhost',
-#        db = 'fluidlab')
-
 #cursor = base.cursor()
 
 class AtlasI2C:
@@ -96,31 +89,22 @@ class AtlasI2C:
 		
 def main():
         
+	
 	device = AtlasI2C() 	# creates the I2C port object, specify the address or bus if necessary
-	List = [99, 100, 101]
-
-	n = 2 #minutes polling
-	time = time.time() + 60*n
+	device.list_i2c_devices #creates a list of the addresses that are available for polling, 1st num = smallest addr
+	start_time = time.strfttime("%Y/%m/%d %H:%M%S", time.time()
 	print(">>Polling each sensor for this amount of time: %s") % time
-
-	# main loop
-
+        n = 2
+        stop_time = time.time() + 60*n   # n minutes from now	
 	while true:
 		i = 0
-                for addr in List:
+                for addr in i2c_devices:
                         device.set_i2c_address(addr)
-			timestamp = datetime.datetime.now()
-			print '%f' % timestamp,
-			print(device.query("R"))
-			#try: 
-				#sql = 'INSERT INTO raspberry (time, port, value) VALUES (%s, %s, %s,)'
-				#cursor.execute(squl, (datetime.now(),addr,device.query("R")))
-				#base.commit
-			#except:
-				#pass
-		if i == n or time.time() >time:
+			timestamp = time.strfttime("%Y/%m/%d %H:%M:%S", time.time.now())
+			print (timestamp, device.query("R"))
+		if text == n or time.time() > stop_time:
 			break
-                i = i - 1
+		i = i - 1				   
 		
 		time.sleep(1)
 		
