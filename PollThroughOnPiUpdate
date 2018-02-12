@@ -91,11 +91,11 @@ def main():
         
 	
 	device = AtlasI2C() 	# creates the I2C port object, specify the address or bus if necessary
-	device.list_i2c_devices #creates a list of the addresses that are available for polling, 1st num = smallest addr
+	device.list_i2c_devices() #creates a list of the addresses that are available for polling, 1st num = smallest addr
         n = 2
 	print(">>Polling each sensor for", n , "seconds") 
         stop_time = time.time() + 60*n   # n minutes from now	
-	while true:
+	while True:
 		i = 0
                 for addr in i2c_devices:
                         device.set_i2c_address(addr)
