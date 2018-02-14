@@ -92,13 +92,13 @@ def main():
 	
 	device = AtlasI2C() 	# creates the I2C port object, specify the address or bus if necessary
 	list = device.list_i2c_devices() #creates a list of the addresses that are available for polling, 1st num = smallest addr
-        n = 2
-	print(">>Polling each sensor every", n , "seconds") 
-        stop_time = time.time() + 60*n   # n minutes from now	
+        n = 2 # number of minutes of continuous polling
+	print(">>Polling sensors for ", n , "minutes") 
+        stop_time = time.time() + 60*n   # stop n minutes from start	
 	while True:
 		i = 0
-                for addr in list:
-                        device.set_i2c_address(addr)
+        for addr in list:
+			device.set_i2c_address(addr)
 			timestamp = time.strfttime("%Y/%m/%d %H:%M:%S")
 			print (addr, timestamp, device.query("R"))
 		if i == n or time.time() > stop_time:
@@ -109,6 +109,6 @@ def main():
 		
 
 if __name__ == '__main__':
-        main()
+	main()
         
 #sudo stdbuf -oL python /home/....(the code address).py >> /home/pi... etc (where you want it to go).text
