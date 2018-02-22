@@ -87,7 +87,6 @@ class AtlasI2C:
 		
 def main():
         
-	
 	device = AtlasI2C() 	# creates the I2C port object, specify the address or bus if necessary
 	list = device.list_i2c_devices() #creates a list of the addresses that are available for polling, 1st num = smallest addr
         n = 2 #polling length of time 
