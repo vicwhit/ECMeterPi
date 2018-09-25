@@ -97,11 +97,11 @@ def main():
 		i = 0
 		for addr in list:
 			device.set_i2c_address(addr)
-			timestamp = time.strftime("%Y/%m/%d %H:%M:%S")
-			print (addr, timestamp, device.query("R"))
+			timestamp = time.strftime("%Y/%m/%d %H:%M:%S") #placing a date and time stamp down to seconds
+			print (addr, timestamp, device.query("R")) #printing the time stamp, addr and poll value
 		if i == n or time.time() > stop_time:
 			break
-		i = i - 1				   
+		i = i - 1 #why are we counting backwards here?				   
 		
 		time.sleep(1)
 		
