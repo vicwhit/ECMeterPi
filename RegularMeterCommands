@@ -7,27 +7,38 @@ import time       # used for sleep delay and timestamps
 import string     # helps parse strings
 
 class AtlasI2C:
-  long_timeout = 1.5         	# the timeout needed to query readings and calibrations
-  short_timeout = 1.         	# timeout for regular commands
-  default_bus = 1.         	  # the default bus for I2C on the newer Raspberry Pis, certain older boards use bus 0
-  default_address = 100     	# the default address for the sensor
-  current_addr = default_address
+	long_timeout = 1.5         	# the timeout needed to query readings and calibrations
+	short_timeout = 1.         	# timeout for regular commands
+  	default_bus = 1.         	  # the default bus for I2C on the newer Raspberry Pis, certain older boards use bus 0
+  	default_address = 100     	# the default address for the sensor
+  	current_addr = default_address
 
-  def __init__(self, address=default_address, bus=default_bus):
+  	def __init__(self, address=default_address, bus=default_bus):
 		# open two file streams, one for reading and one for writing
 		# the specific I2C channel is selected with bus
 		# it is usually 1, except for older revisions where its 0
 		# wb and rb indicate binary read and write
-	  self.file_read = io.open("/dev/i2c-"+str(bus), "rb", buffering=0)
+		self.file_read = io.open("/dev/i2c-"+str(bus), "rb", buffering=0)
 		self.file_write = io.open("/dev/i2c-"+str(bus), "wb", buffering=0)
 
 		# initializes I2C to either a user specified or default address
 		self.set_i2c_address(address)
-  def set_i2c_address(self, addr):
+
+  	def __init__(self, address=default_address, bus=default_bus):
+		# open two file streams, one for reading and one for writing
+		# the specific I2C channel is selected with bus
+		# it is usually 1, except for older revisions where its 0
+		# wb and rb indicate binary read and write
+		self.file_read = io.open("/dev/i2c-"+str(bus), "rb", buffering=0)
+		self.file_write = io.open("/dev/i2c-"+str(bus), "wb", buffering=0)
+
+		# initializes I2C to either a user specified or default address
+		self.set_i2c_address(address)
+  	def set_i2c_address(self, addr):
 		# set the I2C communications to the slave specified by the address
 		# The commands for I2C dev using the ioctl functions are specified in
 		# the i2c-dev.h file from i2c-tools
-	  I2C_SLAVE = 0x703
+		I2C_SLAVE = 0x703
 		fcntl.ioctl(self.file_read, I2C_SLAVE, addr)
 		fcntl.ioctl(self.file_write, I2C_SLAVE, addr)
 		self.current_addr = addr
