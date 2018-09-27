@@ -94,8 +94,8 @@ class AtlasI2C:
 
 		
 def main():
-  device = AtlasI2C() 	# creates the I2C port object, specify the address or bus if necessary
-  print(">> Atlas Scientific sample code")
+	device = AtlasI2C() 	# creates the I2C port object, specify the address or bus if necessary
+  	print(">> Atlas Scientific sample code")
 	print(">> Any commands entered are passed to the board via I2C except:")
 	print(">>   List_addr lists the available I2C addresses.")
 	print(">>   Address,xx changes the I2C address the Raspberry Pi communicates with.")
