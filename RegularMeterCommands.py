@@ -102,8 +102,8 @@ def main():
 	print(">>   Poll,xx.x command continuously polls the board every xx.x seconds")
 	print(" where xx.x is longer than the %0.2f second timeout." % AtlasI2C.long_timeout)
 	print(">> Pressing ctrl-c will stop the polling")
-  #main loop
-  while True:
+ 	#main loop
+  	while True:
 		input = raw_input("Enter command: ")
 
 		if input.upper().startswith("LIST_ADDR"):
